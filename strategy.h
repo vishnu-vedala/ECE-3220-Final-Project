@@ -4,8 +4,7 @@
 class Strategy{
     public:
         virtual ~Strategy(){}
-        virtual void GameMode(std::string input) const = 0;
-        
+        virtual std::string get_answer(std::string answer);
 };
 
 class Context{
@@ -21,4 +20,4 @@ class Context{
             delete this->strategy_;
             this->strategy_ = strategy; 
         }
-}
+};
