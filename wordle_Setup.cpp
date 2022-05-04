@@ -1,4 +1,4 @@
-#include "word_List.h"
+#include "word_Setup.h"
 #include "singleton.h"
 #include <fstream>
 #include <iostream>

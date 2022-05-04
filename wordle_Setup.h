@@ -15,7 +15,7 @@ class wordle_Setup{
 	int letter_Values[5][26];
 
     public :
-        void import_Words();
+    void import_Words();
 	void value_Letters();
 	void get_letter_Values(int i, int j);
 };

@@ -1,6 +1,6 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
-#include "FileIO.h"
+#include "wordle_Setup.h"
 #include  <string>
 
 using namespace std;
