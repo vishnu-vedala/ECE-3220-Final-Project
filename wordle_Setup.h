@@ -12,7 +12,7 @@ using namespace std;
 class wordle_Setup{
 
     private :
-	int letter_Values[][];
+	int letter_Values[5][26];
 
     public :
         void import_Words();
