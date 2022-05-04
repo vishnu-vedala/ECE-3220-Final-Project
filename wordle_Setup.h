@@ -15,10 +15,6 @@ class wordle_Setup{
 	int letter_Values[5][26];
 
     public :
-<<<<<<< HEAD
-=======
-    std::string get_answer() override;
->>>>>>> 2f3057a (plz work)
     void import_Words();
 	void value_Letters();
 	void get_letter_Values(int i, int j);
