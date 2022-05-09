@@ -12,16 +12,11 @@ using namespace std;
 
 class Lists{
 
-    private :
-	
-
-    public :
-    int letter_Values[5][26];
-    vector<string>* word_List;
+public :
+    int letter_Values[5][26] = { 0 };
+    vector<string> word_List;
 	vector<string>* wordle_Solutions;
     Lists();
-	
+    
 };
-
 #endif
-     

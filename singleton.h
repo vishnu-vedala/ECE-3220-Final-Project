@@ -2,7 +2,7 @@
 #define SINGLETON_H
 #include "wordle_Setup.h"
 #include "lists.h"
-#include  <string>
+#include <string>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ class Singleton{
   public:
         static Singleton *getInstance();
         ~Singleton();
-        Lists getlists();
+        Lists* getlists();
         
   private:
         Singleton(){};
