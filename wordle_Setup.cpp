@@ -1,34 +1,36 @@
-#include "word_Setup.h"
+#include "wordle_Setup.h"
 #include "singleton.h"
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
-void import_Words() {
-        ifstream list;
-        list.open("Scrabble list.txt", ios::in | ios:: binary);
-        string line;
-	if(student.is_open() ){
+void wordle_Setup::import_Words() {
+    ifstream list;
+    list.open("Scrabble list.txt", ios::in | ios:: binary);
+    string line;
+	if(list.is_open() ){
                 while(getline(list, line))
-			Singleton::getInstance()->word_List.pushback(line);
+			Singleton::getInstance()->getlists().word_List->push_back(line);
         }
 	else
-		cout<<"error message"<<endl;
-	student.close();
-
+		cout << "error message" << endl;
+	list.close();
 	return;
-
 }
 
-void value_Letters(){
+void wordle_Setup::value_Letters(){
 
 	string tempw, temp1, temp2, temp3, temp4, temp5;
 
-	for(int i = 0; i < Singleton::getInstance()->word_List.size(); i++){
-		tempw = Singleton::getInstance()->word_List[i];
+	vector<string> templ = *Singleton::getInstance()->getlists().word_List;
+
+	for(long unsigned i = 0; i < Singleton::getInstance()->getlists().word_List->size(); i++){
+
+		tempw = templ[i];
 		temp1 = temp1 + tempw[0];
 		temp2 = temp2 + tempw[1];
 		temp3 = temp3 + tempw[2];
@@ -36,11 +38,20 @@ void value_Letters(){
 		temp5 = temp5 + tempw[4];
 	}
 
-	for(int i = 0; i < 5; i++){
-		for(int j = 0; j < 26; j++{
-			get_letter_values(i, j) = count(temp1.begin(), j + 21);
+	//for(int i = 0; i < 5; i++){
+		for(int j = 0; j < 26; j++){
+			int count = 0;
+			int size = temp1.size();
+			for(int i = 0; i < size; i++){
+				if(temp1[j] == j+21)
+				count++;
+		
+			}
+		Singleton::getInstance()->getlists().letter_Values[1][j] = count;
+
+			//Singleton::getInstance()->get_letter_Values(1, j) = count(temp1[0], temp1[temp1.size()], j + 21);
 		}
-	}
+	//}
 	return;
 
 }
