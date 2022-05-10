@@ -18,6 +18,7 @@ class wordle_Setup{
     public :
     void import_Words();
 	void value_Letters();
+    void order_Words();
 	
 };
 
