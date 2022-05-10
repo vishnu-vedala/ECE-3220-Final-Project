@@ -4,20 +4,16 @@
 class Strategy{
     public:
         virtual ~Strategy(){}
-        virtual std::string get_answer(std::string answer);
+        virtual std::string get_answer(std::string answer) = 0;
 };
 
-class Context{
+class GameMode{
     private:
         Strategy *strategy_;
 
     public:
-        Context(Strategy* strategy = nullptr) : strategy_(strategy){}
-        ~Context(){
-            delete this->strategy_;
-        }
-        void set_strategy(Strategy* strategy){
-            delete this->strategy_;
-            this->strategy_ = strategy; 
-        }
+        GameMode(Strategy* strategy);
+        ~GameMode();
+        void set_strategy(Strategy* strategy);
+        void store_answer();
 };
