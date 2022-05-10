@@ -8,4 +8,5 @@ Lists::Lists(){
             this->letter_Values[j][i] = 0;
         }
     }
+    
 };
