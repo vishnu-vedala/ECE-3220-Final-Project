@@ -14,8 +14,9 @@ class Lists{
 
 public :
     int letter_Values[5][26] = { 0 };
-    vector<string> word_List;
-	vector<string>* wordle_Solutions;
+    vector<std::string> word_List;
+	vector<std::string>* wordle_Solutions;
+    vector<int> letter_Values_vec;
     Lists();
     
 };

@@ -16,7 +16,7 @@ void wordle_Setup::import_Words() {
 	if(list.is_open() ){
 
 			while(getline(list, line)){
-			cout << line << endl;
+			//cout << line << endl;
 			Singleton::getInstance()->getlists()->word_List.push_back(line);
 			}
 
@@ -46,22 +46,19 @@ void wordle_Setup::value_Letters(){
 
 void wordle_Setup::order_Words() {
 	
-	vector<int> letter_Values_vec;
 	int value;
 	string tempw;
 	for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
 		tempw = Singleton::getInstance()->getlists()->word_List[i];
+		value = 0;
 		for(int j = 0; j < 5; j++){
-			value = 0;
 			char tempc = tempw[j];
 			value = value + Singleton::getInstance()->getlists()->letter_Values[j][tempc - 97];
 		}
-		letter_Values_vec.push_back(value);
+		Singleton::getInstance()->getlists()->letter_Values_vec.push_back(value);
 	}
-	//for(long unsigned i = 0; i < letter_Values_vec.size(); i++)
-	//	cout << i << " " << letter_Values_vec[i] << endl;
+	/*for(long unsigned i = 0; i < letter_Values_vec.size(); i++)
+		cout << i << " " << letter_Values_vec[i] << endl;
 
-
-	
-	return;
+	return;*/
 }
