@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
     Setup->import_Words();
     Setup->value_Letters();
     Setup->order_Words();
+    Play->retrieve_answer();
     while(!win && !lose){
 
         if(Singleton::getInstance()->getlists()->word_List.size() < 5){
