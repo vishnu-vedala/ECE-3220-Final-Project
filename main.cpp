@@ -1,5 +1,4 @@
 #include "singleton.h"
-#include "strategy.h"
 #include "wordle_Setup.h"
 #include <string.h>
 #include "play_wordle.h"
@@ -47,13 +46,22 @@ int main(int argc, char** argv) {
         Play->set_guess_user();
     }
     Play->set_result();
+    cout << "guess: " << Play->get_guess() << endl;
     cout << "result: ";
     for(int i = 0; i < 5; i++){
         cout <<  Play->result[i];
     }
-    cout << endl << endl;
-    //cout << Play->set_result() << endl;
+    
+    Play->update_list();
+    cout << endl << "size: " << Singleton::getInstance()->getlists()->word_List.size() << endl;
+    //cout << Singleton::getInstance()->getlists()->word_List[11] << endl;
+    //cout << Singleton::getInstance()->getlists()->word_List[10024] << endl;
+    cout << endl;
+
     if(Play->set_result() == 5){
+        win = 1;
+    }
+    if( Singleton::getInstance()->getlists()->word_List.size() == 0){
         win = 1;
     }
     }

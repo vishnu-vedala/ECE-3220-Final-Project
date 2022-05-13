@@ -57,11 +57,15 @@ void Play_Wordle::set_guess_program(){
     guess_ = Singleton::getInstance()->getlists()->word_List[maxElementIndex];
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
-            cout << "found" << endl;
+            //cout << "found" << endl;
             Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
             Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
         }
     }
+}
+
+string Play_Wordle::get_guess(){
+    return this->guess_;
 }
 
 void Play_Wordle::set_guess_user(){
@@ -76,7 +80,7 @@ void Play_Wordle::set_guess_user(){
         tempw.erase(tempw.begin() + maxElementIndex);
     }
     string tempguess;
-    cout << "please enter a 5 letter word or a day number from 0-2314 starting from june 19 2021" << endl;
+    cout << "please enter a 5 letter word" << endl;
     cin >> tempguess;
     if(tempguess.size() != 5){
         cout << "please enter a 5 letter scrabble word" << endl;
@@ -85,12 +89,11 @@ void Play_Wordle::set_guess_user(){
     guess_ = tempguess;
     cout << "guess: " << guess_ << endl;
     //Singleton::getInstance()->getlists()->word_List = vector<string>({"hello", "break", "tests"});
-    cout << Singleton::getInstance()->getlists()->word_List[2145] << endl;
+    //cout << Singleton::getInstance()->getlists()->word_List[2145] << endl;
     //cout << strcmp(Singleton::getInstance()->getlists()->word_List[2145], "break") << endl;
     
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
-            cout << "found" << endl;
             Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
             Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
         }
@@ -104,6 +107,90 @@ bool Play_Wordle::myEquals(string a, string b) {
           a[3] == b[3] &&
           a[4] == b[4];
 }
+
+void Play_Wordle::update_list(){
+
+    string tempw;
+    bool ignore = true;
+    int count = 0;
+    
+     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
+        //int i = 9752;
+        //cout << Singleton::getInstance()->getlists()->word_List[i] << end;
+        tempw = Singleton::getInstance()->getlists()->word_List[i];
+        ignore = true;
+        for(int j = 0; j < 5; j++){ 
+            if(ignore){
+                switch(result[j]){
+                    case 0:
+                        for(int k = 0; k < 5; k++){
+                            if(guess_[j] == tempw[k]){
+                                if(ignore){
+                                    Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
+                                    Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
+                                    //cout << Singleton::getInstance()->getlists()->word_List[i-1];
+                                    ignore = false;
+                                    i--;
+                            }
+                        }
+                    }
+                    break;
+                    
+                    case 1:
+                        if(ignore){
+                        for(int k = 0; k < 5; k++){
+                            if(guess_[j] == tempw[k]){
+                                count++;
+                            }
+                        }
+                        
+                            if(count == 0){
+                                Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
+                                Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
+                                ignore = false;
+                                count = 0;
+                                i--;
+                            }
+                        }
+
+                        if(ignore){
+                            if(guess_[j] == tempw[j]){
+                                Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
+                                Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
+                                ignore = false;
+                                i--;
+                            }
+                        }
+                    break;
+
+                    case 2:
+                        if(guess_[j] != tempw[j]){
+                            Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
+                            Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
+                            ignore = false;
+                            i--;
+                        }
+                        
+                        
+                    
+                        
+
+                    }
+                }
+            }
+        }
+
+    }
+    
+        //cout << Singleton::getInstance()->getlists()->word_List[12] << " " << Singleton::getInstance()->getlists()->word_List.size() << endl;
+        
+     
+     
+     //}
+     //cout << Singleton::getInstance()->getlists()->word_List.size();
+
+
+
 
 int Play_Wordle::set_result(){
     for(int i = 0; i < 5; i++){
