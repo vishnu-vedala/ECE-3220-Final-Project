@@ -13,6 +13,11 @@ int main(int argc, char** argv) {
     }
     if(!strcmp(argv[1], "-h")){
         cout << "help output" << endl;
+        cout << "Use ./make to run the Wordle program. Use the flags to choose who is playing Wordle." << endl << endl;
+        cout << "FLAGS:" << endl << "add flag(s) after ./make Ex: ./make (flag)" << endl;
+        cout << "program: Use the \"program\" flag if you want our program to play Wordle. It will prompt you to input five letter word, and our program will try to solve Wordle with the inputted word as the answer. Ex: ./make program" << endl;
+        cout << "user: Use the \"user\" flag if you want to play Wordle. It will prompt you to input a five letter word. Our program will suggest guesses to the user.  Ex: ./make user" << endl;
+        cout << "-h: Help page that outlines the programs usage. Ex: ./make -h" << endl;
         return 0;
     }
 

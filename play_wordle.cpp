@@ -4,9 +4,8 @@
 using namespace std;
 
 Play_Wordle::Play_Wordle(){}
-/*
+
 std::string Play_Wordle::getAnswer(){
-    GameMode* game = new GameMode();
     std::string answer;
     std::cout << "Input desired answer as a 5 (lowercase) letter word or a 3 digit day number (Ex: 001 for Day 1 Wordle solution): ";
     std::cin >> answer;
@@ -29,7 +28,7 @@ std::string Play_Wordle::getAnswer(){
         getAnswer();
     }
 }
-*/
+
 
 
 /* ChooseWord strategy implementation 
