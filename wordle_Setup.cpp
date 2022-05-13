@@ -31,8 +31,8 @@ void wordle_Setup::import_Words() {
 		while (getline(solutions, line)){
         	std::stringstream ss(line);
         	while(getline(ss, line, ' ')){
-            	if(line.length() == 6 | line.length() == 5){
-					for(int i = 0; i < line.length(); i++){
+            	if(line.length() == 6 || line.length() == 5){
+					for(long unsigned i = 0; i < line.length(); i++){
 						line[i] = tolower(line[i]);
 					}
 					Singleton::getInstance()->getlists()->wordle_Solutions.push_back(line);
@@ -92,7 +92,7 @@ void wordle_Setup::order_Words() {
 
 		if(count > 6){
 			tempv = Singleton::getInstance()->getlists()->letter_Values_vec[i];
-			Singleton::getInstance()->getlists()->letter_Values_vec[i] = tempv * .5;
+			Singleton::getInstance()->getlists()->letter_Values_vec[i] = tempv * .75;
 		}
 		count = 0;
 	}

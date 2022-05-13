@@ -9,7 +9,7 @@ void Play_Wordle::retrieve_answer(){
     std::string answer;
     std::cout << "Input desired answer as a 5 (lowercase) letter word or a day number (0 - 2314): ";
     std::cin >> answer;
-    std::cout << answer << std::endl;
+    //std::cout << answer << std::endl;
     if(answer.size() == 5){
         for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
             std::string temp = Singleton::getInstance()->getlists()->word_List[i];
@@ -33,7 +33,7 @@ void Play_Wordle::retrieve_answer(){
             retrieve_answer();
         }
         answer_ = Singleton::getInstance()->getlists()->wordle_Solutions[day];
-        std::cout << answer_ << std::endl;
+        //std::cout << answer_ << std::endl;
         }
         catch(const std::invalid_argument& ){
             std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
@@ -44,29 +44,6 @@ void Play_Wordle::retrieve_answer(){
     }
 
 }
-
-
-
-/* ChooseWord strategy implementation 
-std::string ChooseWord::retrieve_answer(){
-    std::string answer;
-    std::cout << "Input desired answer as a 5 letter word: ";
-    std::cin >> answer;
-    
-    for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
-        std::string temp = Singleton::getInstance()->getlists()->word_List[i];
-        if(answer == temp){
-            std::cout << "Word accepted...Beginning Wordle..." << std::endl;
-            break;
-        }
-        if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
-            std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
-            return; 
-        }
-    }
-    */
-    //answer_ = answer;
-//}
 
 void Play_Wordle::set_guess_program(){
     int maxElementIndex = std::max_element(Singleton::getInstance()->getlists()->letter_Values_vec.begin(), Singleton::getInstance()->getlists()->letter_Values_vec.end()) - Singleton::getInstance()->getlists()->letter_Values_vec.begin();
@@ -127,8 +104,6 @@ void Play_Wordle::update_list(){
     int count = 0;
     
      for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
-        //int i = 9752;
-        //cout << Singleton::getInstance()->getlists()->word_List[i] << end;
         tempw = Singleton::getInstance()->getlists()->word_List[i];
         ignore = true;
         for(int j = 0; j < 5; j++){ 
@@ -140,7 +115,6 @@ void Play_Wordle::update_list(){
                                 if(ignore){
                                     Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
                                     Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
-                                    //cout << Singleton::getInstance()->getlists()->word_List[i-1];
                                     ignore = false;
                                     i--;
                             }
@@ -160,9 +134,9 @@ void Play_Wordle::update_list(){
                                 Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
                                 Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
                                 ignore = false;
-                                count = 0;
                                 i--;
                             }
+                            count = 0;
                         }
 
                         if(ignore){

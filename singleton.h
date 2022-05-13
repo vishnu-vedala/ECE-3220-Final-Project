@@ -10,7 +10,6 @@ class Singleton{
 
   public:
         static Singleton *getInstance();
-        ~Singleton();
         Lists* getlists();
         
   private:

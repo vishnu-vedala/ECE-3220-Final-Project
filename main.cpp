@@ -2,10 +2,11 @@
 #include "wordle_Setup.h"
 #include <string.h>
 #include "play_wordle.h"
+#include <stdlib.h>
+#include <stdio.h>  
 
 int main(int argc, char** argv) {
     bool win = false;
-    bool lose = false;
     int counter = 0;
 
     if(argc != 2){
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
     Setup->value_Letters();
     Setup->order_Words();
     Play->retrieve_answer();
-    while(!win && !lose){
+    while(!win){
 
         if(Singleton::getInstance()->getlists()->word_List.size() < 5){
             Play->printsize = Singleton::getInstance()->getlists()->word_List.size();
@@ -57,31 +58,46 @@ int main(int argc, char** argv) {
      Play->set_result();
     cout << "result: ";
     for(int i = 0; i < 5; i++){
-        cout <<  Play->result[i];
+        switch(Play->result[i]){
+            case 0:
+                cout <<  "\033[7;37m" << Play->result[i] << "\033[0m";
+                break;
+            case 1:
+                cout <<  "\033[7;33m" << Play->result[i] << "\033[0m";
+                break;                
+            case 2:
+                cout <<  "\033[7;32m" << Play->result[i] << "\033[0m";
+                break; 
+        } 
     }
     
     Play->update_list();
-    cout << endl << "size: " << Singleton::getInstance()->getlists()->word_List.size() << endl;
-    cout << endl;
+
+    
 
     if(Play->set_result() == 5){
         win = true;
     }
-    if( Singleton::getInstance()->getlists()->word_List.size() == 0){
-        lose = true;
-    }
+
+    if(!win)
+        cout << endl << "Available Words: " << Singleton::getInstance()->getlists()->word_List.size() << endl;
+    
+    cout << endl;
+
     }
 
     if(win)
     cout << "you win! " << counter << endl;
-
-    if(lose && !win)
-    cout << "you lose " << counter << endl;
 
 
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         cout << Singleton::getInstance()->getlists()->word_List[i];
     }
     
+    delete Play;
+    delete Setup;
+    delete Singleton::getInstance()->getlists();
+    delete Singleton::getInstance();
+
     return 0;
 }
