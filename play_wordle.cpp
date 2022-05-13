@@ -20,13 +20,27 @@ void Play_Wordle::retrieve_answer(){
             }
             if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
                 std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
+                retrieve_answer();
                 return; 
             }
         }
     }
     else if(answer.size() != 5){
-        std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
-        retrieve_answer();
+        try{
+        int day = stoi(answer); 
+        if(day > 2314){
+            std::cout << "Pick a day between 0 and 2314" << std::endl;
+            retrieve_answer();
+        }
+        answer_ = Singleton::getInstance()->getlists()->wordle_Solutions[day];
+        std::cout << answer_ << std::endl;
+        }
+        catch(const std::invalid_argument& ){
+            std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
+            retrieve_answer();
+        }
+        //std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
+        //retrieve_answer();
     }
 
 }

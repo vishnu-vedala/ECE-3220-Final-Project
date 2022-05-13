@@ -34,6 +34,9 @@ void wordle_Setup::import_Words() {
         	std::stringstream ss(line);
         	while(getline(ss, line, ' ')){
             	if(line.length() == 6 | line.length() == 5){
+					for(int i = 0; i < line.length(); i++){
+						line[i] = tolower(line[i]);
+					}
 					Singleton::getInstance()->getlists()->wordle_Solutions.push_back(line);
             	}
         	}
