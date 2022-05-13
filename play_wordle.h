@@ -16,6 +16,7 @@ class Play_Wordle{
         int result[5] = { 0 };
         bool myEquals(string a, string b);
         string get_guess();
+        int printsize = 5;
 
         
     private:

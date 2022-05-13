@@ -59,12 +59,12 @@ void Play_Wordle::set_guess_program(){
     guess_ = Singleton::getInstance()->getlists()->word_List[maxElementIndex];
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
-            //cout << "found" << endl;
             Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
             Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
         }
     }
-}
+    cout << "guess: " << guess_ << endl;
+    }
 
 string Play_Wordle::get_guess(){
     return this->guess_;
@@ -75,24 +75,20 @@ void Play_Wordle::set_guess_user(){
     vector<string> tempw = Singleton::getInstance()->getlists()->word_List;
     int maxElementIndex;
     cout << "Suggested guesses: " << endl;
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < printsize; i++){
         maxElementIndex = std::max_element(tempv.begin(), tempv.end()) - tempv.begin();
         cout << "   " << tempw[maxElementIndex] << endl;
         tempv.erase(tempv.begin() + maxElementIndex);
         tempw.erase(tempw.begin() + maxElementIndex);
     }
     string tempguess;
-    cout << "please enter a 5 letter word" << endl;
+    cout << "please enter a 5 letter word" << endl << "guess: ";
     cin >> tempguess;
     if(tempguess.size() != 5){
         cout << "please enter a 5 letter scrabble word" << endl;
         this->set_guess_user();
     }
     guess_ = tempguess;
-    cout << "guess: " << guess_ << endl;
-    //Singleton::getInstance()->getlists()->word_List = vector<string>({"hello", "break", "tests"});
-    //cout << Singleton::getInstance()->getlists()->word_List[2145] << endl;
-    //cout << strcmp(Singleton::getInstance()->getlists()->word_List[2145], "break") << endl;
     
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
