@@ -1,5 +1,5 @@
 #include "singleton.h"
-#include "Lists.h"
+#include "lists.h"
 
 Singleton *Singleton::instance = NULL;
 

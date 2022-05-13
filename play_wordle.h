@@ -1,4 +1,4 @@
-#include "Strategy.h"
+#include "strategy.h"
 #include "singleton.h"
 #include <fstream>
 #include <string>
@@ -29,7 +29,7 @@ class ChooseWord : public Strategy{
         //std::string retrieve_answer(Play_Wordle* wordle) override;
     
     private:
-        Play_Wordle* wordle;
+        //Play_Wordle* wordle;
 };
 
 class ChooseDay : public Strategy{
@@ -37,6 +37,6 @@ class ChooseDay : public Strategy{
         //std::string retrieve_answer(Play_Wordle* wordle) override;
 
     private:
-        Play_Wordle* wordle;
+        //Play_Wordle* wordle;
 };
 

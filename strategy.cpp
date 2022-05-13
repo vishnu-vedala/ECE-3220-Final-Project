@@ -1,4 +1,4 @@
-#include "Strategy.h"
+#include "strategy.h"
 
 GameMode::GameMode(Strategy* strategy){
     strategy_ = strategy;
