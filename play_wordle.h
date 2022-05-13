@@ -20,11 +20,7 @@ class Play_Wordle{
 
         
     private:
-<<<<<<< HEAD
-        string answer_ = "brady";
-=======
         string answer_;
->>>>>>> 87a2dbe2b868e072f09a54faf013e16433f7e0f8
         string guess_;
         //int guesses = 0;
         

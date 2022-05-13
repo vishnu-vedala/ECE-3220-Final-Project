@@ -4,8 +4,6 @@
 using namespace std;
 
 Play_Wordle::Play_Wordle(){}
-<<<<<<< HEAD
-=======
 
 void Play_Wordle::retrieve_answer(){
     std::string answer;
@@ -22,6 +20,7 @@ void Play_Wordle::retrieve_answer(){
             }
             if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
                 std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
+                retrieve_answer();
                 return; 
             }
         }
@@ -55,7 +54,6 @@ std::string ChooseWord::retrieve_answer(){
     */
     //answer_ = answer;
 //}
->>>>>>> 87a2dbe2b868e072f09a54faf013e16433f7e0f8
 
 void Play_Wordle::set_guess_program(){
     int maxElementIndex = std::max_element(Singleton::getInstance()->getlists()->letter_Values_vec.begin(), Singleton::getInstance()->getlists()->letter_Values_vec.end()) - Singleton::getInstance()->getlists()->letter_Values_vec.begin();

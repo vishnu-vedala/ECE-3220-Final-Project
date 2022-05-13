@@ -15,10 +15,8 @@ void wordle_Setup::import_Words() {
     ifstream list;
     list.open("Scrabble list.txt", ios::in | ios:: binary);
     string line = "abcdef";
-	//string* temp;
 	if(list.is_open() ){
 		while(getline(list, line)){
-		//cout << line << endl;
 		Singleton::getInstance()->getlists()->word_List.push_back(line);
 		}
 
@@ -33,7 +31,7 @@ void wordle_Setup::import_Words() {
 		while (getline(solutions, line)){
         	std::stringstream ss(line);
         	while(getline(ss, line, ' ')){
-            	if(line.length() == 6 | line.length() == 5){
+            	if(line.length() == 6 || line.length() == 5){
 					Singleton::getInstance()->getlists()->wordle_Solutions.push_back(line);
             	}
         	}
@@ -58,11 +56,7 @@ void wordle_Setup::value_Letters(){
 			char tempc = tempw[j];
 			Singleton::getInstance()->getlists()->letter_Values[j][tempc - 97]++;
 		}
-
-
 	}
-
-
 	return;
 }
 
@@ -70,6 +64,9 @@ void wordle_Setup::order_Words() {
 	
 	int value;
 	string tempw;
+	int count = 0;
+	int tempv;
+
 	for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
 		tempw = Singleton::getInstance()->getlists()->word_List[i];
 		value = 0;
@@ -79,8 +76,22 @@ void wordle_Setup::order_Words() {
 		}
 		Singleton::getInstance()->getlists()->letter_Values_vec.push_back(value);
 	}
-	/*for(long unsigned i = 0; i < letter_Values_vec.size(); i++)
-		cout << i << " " << letter_Values_vec[i] << endl;
 
-	return;*/
+	
+	for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
+		for(int j = 0; j < 5; j++){
+			for(int k = 0; k < 5; k++){
+				if(Singleton::getInstance()->getlists()->word_List[i][j] == Singleton::getInstance()->getlists()->word_List[i][k]){
+					count++;
+				}
+			}
+		}
+
+		if(count > 6){
+			tempv = Singleton::getInstance()->getlists()->letter_Values_vec[i];
+			Singleton::getInstance()->getlists()->letter_Values_vec[i] = tempv * .5;
+		}
+		count = 0;
+	}
+	
 }
