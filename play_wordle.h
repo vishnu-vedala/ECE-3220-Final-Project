@@ -8,7 +8,7 @@ using namespace std;
 class Play_Wordle{
     public:
         Play_Wordle();
-        std::string getAnswer();
+        void getAnswer();
         void set_guess_program();
         void set_guess_user();
         int set_result();

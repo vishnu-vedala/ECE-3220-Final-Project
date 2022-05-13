@@ -13,7 +13,7 @@ using namespace std;
 class Lists{
 
 public :
-    int letter_Values[5][26] = { 0 };
+    int letter_Values[5][26] = {{0}};
     vector<std::string> word_List;
 	//vector<std::string>* wordle_Solutions;
     vector<int> letter_Values_vec;
