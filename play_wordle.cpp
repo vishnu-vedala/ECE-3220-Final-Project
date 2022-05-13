@@ -5,17 +5,18 @@ using namespace std;
 
 Play_Wordle::Play_Wordle(){}
 
-void Play_Wordle::getAnswer(){
+void Play_Wordle::retrieve_answer(){
     std::string answer;
     std::cout << "Input desired answer as a 5 (lowercase) letter word or a day number (0 - 2314): ";
     std::cin >> answer;
+    std::cout << answer << std::endl;
     if(answer.size() == 5){
         for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
             std::string temp = Singleton::getInstance()->getlists()->word_List[i];
-            if(answer == temp){
+            if(myEquals(answer, temp)){
                 std::cout << "Word accepted...Beginning Wordle..." << std::endl;
                 answer_ = answer;
-                break;
+                return;
             }
             if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
                 std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
@@ -25,9 +26,9 @@ void Play_Wordle::getAnswer(){
     }
     else if(answer.size() != 5){
         std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
-        getAnswer();
+        retrieve_answer();
     }
-    
+
 }
 
 

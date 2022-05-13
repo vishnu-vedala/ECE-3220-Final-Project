@@ -5,25 +5,48 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
 void wordle_Setup::import_Words() {
+	ifstream solutions;
+	solutions.open("Wordle list.txt", ios::in | ios:: binary);
     ifstream list;
     list.open("Scrabble list.txt", ios::in | ios:: binary);
     string line = "abcdef";
 	//string* temp;
 	if(list.is_open() ){
+		while(getline(list, line)){
+		//cout << line << endl;
+		Singleton::getInstance()->getlists()->word_List.push_back(line);
+		}
 
-			while(getline(list, line)){
-			//cout << line << endl;
-			Singleton::getInstance()->getlists()->word_List.push_back(line);
-			}
+    }
 
-        }
-
-	else
-		cout << "error message" << endl;
+	else{
+		cout << "Scrabble list textfile failed to open" << endl;
+		list.close();
+		return;
+	}
+	if(solutions.is_open() ){
+		while (getline(solutions, line)){
+        	std::stringstream ss(line);
+        	while(getline(ss, line, ' ')){
+            	cout << line.length() << endl;
+            	if(line.length() == 6 | line.length() == 5){
+					Singleton::getInstance()->getlists()->wordle_Solutions.push_back(line);
+            	}
+        	}
+    	}
+    }
+		
+	else{
+		cout << "Wordle answers list textfile failed to open" << endl;
+		solutions.close();
+		return;
+	}
+	solutions.close();
 	list.close();
 	return;
 }

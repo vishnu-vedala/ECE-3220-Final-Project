@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
     Setup->import_Words();
     Setup->value_Letters();
     Setup->order_Words();
+    Play->retrieve_answer();
     while(win == 0){
     counter++;
     if( mode == 1){
