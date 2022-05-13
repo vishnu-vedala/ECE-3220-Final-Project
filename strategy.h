@@ -1,3 +1,7 @@
+#ifndef STRATEGY_H
+#define STRATEGY_H
+
+
 #include <iostream>
 
 
@@ -17,3 +21,5 @@ class GameMode{
         void set_strategy(Strategy* strategy);
         void store_answer();
 };
+
+#endif

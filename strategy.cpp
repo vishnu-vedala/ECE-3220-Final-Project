@@ -14,5 +14,5 @@ void GameMode::set_strategy(Strategy* strategy){
 }
 
 void GameMode::store_answer(){
-    strategy_->get_answer();
+    //strategy_->get_answer();
 }

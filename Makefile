@@ -1,4 +1,4 @@
-CXXFLAGS := -std=c++11 -Wall -Werror -ggdb -O0
+CXXFLAGS := -std=c++11 -Wall -Werror -ggdb -O0 -lstdc++ -D_GLIBCXX_USE_CXX11_ABI=1
 
 SOURCES := $(wildcard *.cpp)
 OBJS := $(SOURCES:%.cpp=%.o)
