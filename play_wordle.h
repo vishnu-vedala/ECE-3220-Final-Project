@@ -16,10 +16,11 @@ class Play_Wordle{
         int result[5] = { 0 };
         bool myEquals(string a, string b);
         string get_guess();
+        int printsize = 5;
 
         
     private:
-        string answer_ = "xenon";
+        string answer_ = "tipsy";
         string guess_;
         int guesses = 0;
         

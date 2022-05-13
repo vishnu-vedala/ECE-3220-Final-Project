@@ -4,58 +4,18 @@
 using namespace std;
 
 Play_Wordle::Play_Wordle(){}
-/*
-std::string Play_Wordle::getAnswer(){
-    std::string answer;
-    std::cout << "Input desired answer as a 5 (lowercase) letter word or a 3 digit day number (Ex: 001 for Day 1 Wordle solution): ";
-    std::cin >> answer;
-    for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
-        std::string temp = Singleton::getInstance()->getlists()->word_List[i];
-        if(answer == temp){
-            std::cout << "Word accepted...Beginning Wordle..." << std::endl;
-            break;
-        }
-        if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
-            std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
-            return; 
-        }
-    }
-}
-*/
-
-
-/* ChooseWord strategy implementation 
-std::string ChooseWord::retrieve_answer(){
-    std::string answer;
-    std::cout << "Input desired answer as a 5 letter word: ";
-    std::cin >> answer;
-    
-    for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
-        std::string temp = Singleton::getInstance()->getlists()->word_List[i];
-        if(answer == temp){
-            std::cout << "Word accepted...Beginning Wordle..." << std::endl;
-            break;
-        }
-        if(i + 1 == Singleton::getInstance()->getlists()->word_List.size()){
-            std::cout << "Word not found in the Wordle word list. Please try again." << std::endl;
-            return; 
-        }
-    }
-    */
-    //answer_ = answer;
-//}
 
 void Play_Wordle::set_guess_program(){
     int maxElementIndex = std::max_element(Singleton::getInstance()->getlists()->letter_Values_vec.begin(), Singleton::getInstance()->getlists()->letter_Values_vec.end()) - Singleton::getInstance()->getlists()->letter_Values_vec.begin();
     guess_ = Singleton::getInstance()->getlists()->word_List[maxElementIndex];
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
-            //cout << "found" << endl;
             Singleton::getInstance()->getlists()->word_List.erase(Singleton::getInstance()->getlists()->word_List.begin() + i);
             Singleton::getInstance()->getlists()->letter_Values_vec.erase(Singleton::getInstance()->getlists()->letter_Values_vec.begin() + i);
         }
     }
-}
+    cout << "guess: " << guess_ << endl;
+    }
 
 string Play_Wordle::get_guess(){
     return this->guess_;
@@ -66,24 +26,20 @@ void Play_Wordle::set_guess_user(){
     vector<string> tempw = Singleton::getInstance()->getlists()->word_List;
     int maxElementIndex;
     cout << "Suggested guesses: " << endl;
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < printsize; i++){
         maxElementIndex = std::max_element(tempv.begin(), tempv.end()) - tempv.begin();
         cout << "   " << tempw[maxElementIndex] << endl;
         tempv.erase(tempv.begin() + maxElementIndex);
         tempw.erase(tempw.begin() + maxElementIndex);
     }
     string tempguess;
-    cout << "please enter a 5 letter word" << endl;
+    cout << "please enter a 5 letter word" << endl << "guess: ";
     cin >> tempguess;
     if(tempguess.size() != 5){
         cout << "please enter a 5 letter scrabble word" << endl;
         this->set_guess_user();
     }
     guess_ = tempguess;
-    cout << "guess: " << guess_ << endl;
-    //Singleton::getInstance()->getlists()->word_List = vector<string>({"hello", "break", "tests"});
-    //cout << Singleton::getInstance()->getlists()->word_List[2145] << endl;
-    //cout << strcmp(Singleton::getInstance()->getlists()->word_List[2145], "break") << endl;
     
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         if(this->myEquals(guess_, Singleton::getInstance()->getlists()->word_List[i])){
