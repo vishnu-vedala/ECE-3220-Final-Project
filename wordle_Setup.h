@@ -16,9 +16,9 @@ class wordle_Setup{
 	
 
     public :
-    void import_Words();
-	void value_Letters();
-    void order_Words();
+    void import_Words(); //Fills word_List and wordle_Solutions vectors with the words from "Scrabble list.txt" and "Wordle list.txt"
+	void value_Letters(); //Gives letters values based on frequency in words
+    void order_Words(); //Orders words from highest total value to lowest
 	
 };
 

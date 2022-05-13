@@ -39,8 +39,6 @@ void Play_Wordle::retrieve_answer(){
             std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
             retrieve_answer();
         }
-        //std::cout << "Word is not 5 letters long, please input a new word." << std::endl;
-        //retrieve_answer();
     }
 
 }
