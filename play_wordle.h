@@ -20,7 +20,7 @@ class Play_Wordle{
 
         
     private:
-        string answer_ = "tipsy";
+        string answer_ = "brady";
         string guess_;
         int guesses = 0;
         
