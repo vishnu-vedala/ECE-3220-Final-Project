@@ -6,7 +6,13 @@
 #include <stdio.h>  
 
 int main(int argc, char** argv) {
+
+    bool end = false;
+
+    while(!end){
+
     bool win = false;
+    bool lose = false;
     int counter = 0;
 
     if(argc != 2){
@@ -42,7 +48,7 @@ int main(int argc, char** argv) {
     Setup->value_Letters();
     Setup->order_Words();
     Play->retrieve_answer();
-    while(!win){
+    while(!win && !lose){
 
         if(Singleton::getInstance()->getlists()->word_List.size() < 5){
             Play->printsize = Singleton::getInstance()->getlists()->word_List.size();
@@ -79,6 +85,17 @@ int main(int argc, char** argv) {
         win = true;
     }
 
+    if(counter == 6 && !win){
+        char ans;
+        cout << endl << "You lose :(" << endl;
+        cout << "Do you want to keep playing? (y/n): ";
+        cin >> ans;
+        if (ans == 'n'){
+            lose = true;
+        }
+        
+    }
+
     if(!win)
         cout << endl << "Available Words: " << Singleton::getInstance()->getlists()->word_List.size() << endl;
     
@@ -87,17 +104,36 @@ int main(int argc, char** argv) {
     }
 
     if(win)
-    cout << "you win! " << counter << endl;
+        cout << "you win! " << counter << endl;
 
 
     for(long unsigned i = 0; i < Singleton::getInstance()->getlists()->word_List.size(); i++){
         cout << Singleton::getInstance()->getlists()->word_List[i];
+        
     }
     
     delete Play;
     delete Setup;
+    
+
+
+    char ansend;
+
+    cout << "Play again?(y/n)";
+    cin >> ansend;
+
+    if(ansend == 'y')
+        end = false;
+
+    if(ansend == 'n')
+        end = true;    
+    }
+
     delete Singleton::getInstance()->getlists();
     delete Singleton::getInstance();
+    
+
+
 
     return 0;
 }
